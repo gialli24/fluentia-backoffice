@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('content');
             $table->text('instructions')->nullable();
             $table->enum('output_type', array('text', 'json', 'html', 'image'))->default('text');
+            $table->text('output_content');
             $table->text('thumbnail')->nullable();
             $table->integer('copy_count')->default(0);
             $table->tinyInteger('is_featured')->default(0);
