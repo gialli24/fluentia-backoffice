@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AiModelsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PromptController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
 Route::resource("/categories", CategoryController::class)/* ->middleware(['auth']) */;
 Route::resource("/ai-models", AiModelsController::class)/* ->middleware(['auth']) */;
+Route::resource("/prompts", PromptController::class)/* ->middleware(['auth']) */;
 
 
 require __DIR__.'/auth.php';

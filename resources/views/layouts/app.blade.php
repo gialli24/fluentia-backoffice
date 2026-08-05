@@ -50,6 +50,9 @@
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{url('/prompts') }}">{{ __('Prompts') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{url('/categories') }}">{{ __('Categories') }}</a>
                         </li>
                         <li class="nav-item">
