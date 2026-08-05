@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ai_model_prompt', function (Blueprint $table) {
-            $table->foreignId('ai_model_id')->constrained();
-            $table->foreignId('prompt_id')->constrained();
+            $table->foreignId('ai_model_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('prompt_id')->constrained()->cascadeOnDelete();
         });
     }
 

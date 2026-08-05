@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('category_prompt', function (Blueprint $table) {
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('prompt_id')->constrained();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('prompt_id')->constrained()->cascadeOnDelete();
         });
     }
 
