@@ -6,9 +6,9 @@
         {{ __('Prompts') }}
     </h2>
 
-    <a href="{{ route('categories.create') }}" class="btn btn-primary">Add</a>
+    <a href="{{ route('prompts.create') }}" class="btn btn-primary">Add</a>
 
-    <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
 
         @foreach ($prompts as $prompt)
         <div class="col">
@@ -36,7 +36,7 @@
 
                     <p class="card-text">{{ $prompt->description }}</p>
 
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="{{ route('prompts.show', $prompt->id) }}" class="btn btn-primary">Visualizza</a>
                 </div>
                 <div class="card-footer text-body-secondary">
                     Output: {{ $prompt->output_type }}
