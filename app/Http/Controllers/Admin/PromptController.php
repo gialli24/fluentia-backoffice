@@ -101,8 +101,16 @@ class PromptController extends Controller
         $prompt->instructions = $data['instructions'];
         $prompt->output_type = $data['output_type'];
         $prompt->output_content = $data['output_content'];
-        $prompt->thumbnail = $data['thumbnail'];
         $prompt->is_featured = $data['is_featured'] ? 1 : 0;
+
+        if (array_key_exists("thumbnail", $data)) {
+
+            Storage::delete($prompt->thumbnail);
+
+            $img_url = Storage::putFile('uploads', $data['thumbnail']);
+
+            $prompt->thumbnail = $img_url;
+        }
 
         $prompt->update();
 
@@ -126,6 +134,10 @@ class PromptController extends Controller
      */
     public function destroy(Prompt $prompt)
     {
+        if($prompt->thumbnail) {
+            Storage::delete($prompt->thumbnail);
+        }
+
         $prompt->delete();
 
         return redirect()->route('prompts.index');

@@ -6,7 +6,7 @@
         {{ __('Prompt') }}
     </h2>
 
-    <form action="{{ route('prompts.update', $prompt) }}" method="POST">
+    <form action="{{ route('prompts.update', $prompt) }}" method="POST" enctype="multipart/form-data">
 
         @csrf
 
@@ -14,8 +14,7 @@
 
         <div class="mb-3">
             <label for="thumbnail" class="form-label">Prompt Thumbnail</label>
-            <input type="text" class="form-control" id="thumbnail" name="thumbnail" value="{{ $prompt->thumbnail }}"
-                required>
+            <input type="file" class="form-control" id="thumbnail" name="thumbnail">
         </div>
 
         <div class="mb-3">
