@@ -27,7 +27,7 @@ class PromptsTableSeeder extends Seeder
             $newPrompt->instructions = $faker->paragraph();
             $newPrompt->output_type = $output_types[rand(0,3)];
             $newPrompt->output_content = $faker->paragraph();
-            $newPrompt->thumbnail = 'https://img.magnific.com/premium-photo/innovative-female-humanoid-android-with-advanced-ai-system-blue-orange-tones-concept-technology-androids-artificial-intelligence-female-characters-futuristic-aesthetics_918839-114677.jpg?semt=ais_hybrid&w=740&q=80';
+            $newPrompt->thumbnail = 'uploads/7bk2irHNxWzHUmeiteo7shw9oHh6MgvrE2WMLfrs.jpg';
             $newPrompt->copy_count = rand(1,100);
             $newPrompt->is_featured = rand(0,1);
 

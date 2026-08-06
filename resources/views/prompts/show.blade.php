@@ -16,7 +16,7 @@
     </form>
 
     <div class="card {{ $prompt->is_featured ? '' : 'border-2 border-primary' }}">
-        <img src="{{ $prompt->thumbnail }}" class="card-img-top" alt="{{ $prompt->title }}">
+        <img src="{{ asset('storage/'.$prompt->thumbnail) }}" class="card-img-top" alt="{{ $prompt->title }}">
         <div class="card-body">
 
             <div>

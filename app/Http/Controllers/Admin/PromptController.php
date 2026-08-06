@@ -7,6 +7,7 @@ use App\Models\AiModel;
 use App\Models\Category;
 use App\Models\Prompt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PromptController extends Controller
 {
@@ -46,8 +47,13 @@ class PromptController extends Controller
         $newPrompt->instructions = $data['instructions'];
         $newPrompt->output_type = $data['output_type'];
         $newPrompt->output_content = $data['output_content'];
-        $newPrompt->thumbnail = $data['thumbnail'];
-        $newPrompt->is_featured = $data['is_featured'] ? 1 : 0;
+        $newPrompt->is_featured = isset($data['is_featured']) ? 1 : 0;
+
+        if (array_key_exists("thumbnail", $data)) {
+            $img_url = Storage::putFile('uploads', $data['thumbnail']);
+
+            $newPrompt->thumbnail = $img_url;
+        }
 
         $newPrompt->save();
 
