@@ -12,7 +12,7 @@
             <nav class="d-flex align-items-center gap-4" role="navigation">
                 <a href="#" class="nav-link">Cos'è Fluentia</a>
                 <a href="#" class="nav-link">Catalogo pubblico <i class="bi bi-box-arrow-up-right"></i></a>
-                <a href="#" class="btn outline">Accedi al backoffice</a>
+                <a href="{{ route('login') }}" class="btn outline">Accedi al backoffice</a>
             </nav>
         </div>
 

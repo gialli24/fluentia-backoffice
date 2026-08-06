@@ -15,6 +15,8 @@ class PageController extends Controller
         $categories_number = Category::count('*');
         $ai_models_number = AiModel::count('*');
 
+        $prompts = Prompt::take(3)->get();
+
         $data = [
             [
                 "count" => $prompts_number,
@@ -30,6 +32,6 @@ class PageController extends Controller
             ]
         ];
 
-        return view('welcome', compact('data'));
+        return view('welcome', compact('data', 'prompts'));
     }
 }
