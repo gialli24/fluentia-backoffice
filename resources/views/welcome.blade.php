@@ -56,7 +56,7 @@
             <div class="fl-stack-wrap">
                 @foreach ($prompts as $prompt)
                 <x-card>
-                    <x-slot:style>max-width: 300px;</x-slot:style>
+                    <x-slot:style>width: 300px;</x-slot:style>
                     <div class="d-flex flex-wrap gap-2">
                         @foreach ($prompt->ai_models as $ai_model)
                         <x-badge>
