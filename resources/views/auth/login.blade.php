@@ -1,72 +1,119 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<div class="row row-cols-1 row-cols-lg-2 g-0">
+    <div class="col">
+        <div class="fl-hero auth d-none d-lg-block">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+            <img src="{{ asset('img/logo.svg') }}" alt="Fluentia" class="fl-logo">
 
-                        <div class="mb-4 row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+            <div class="fl-eyebrow">
+                Backoffice
+            </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+            <h1 class="fl-hero-title">
+                L'archivio prompt
+                <span class="fl-text-gradient brand italic">curato bene</span>
+                comincia da qui.
+            </h1>
 
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
+            <p class="fl-hero-text">
+                Accedi per gestire prompt, categorie e modelli AI. Ogni modifica pubblicata qui è visibile
+                immediatamente
+                sul catalogo di Fluentia.
+            </p>
 
-                        <div class="mb-4 row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+            <x-card>
+                <x-slot:style>max-width: 300px;</x-slot:style>
+                <div class="d-flex flex-wrap gap-2">
+                    @foreach ($prompt->ai_models as $ai_model)
+                    <x-badge>
+                        <x-slot:color>{{ $ai_model->color }}</x-slot:color>
+                        {{ $ai_model->name }}
+                    </x-badge>
+                    @endforeach
+                </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                <h4 class="fl-card-title">{{ $prompt->title }}</h4>
 
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
+                @if ($prompt->thumbnail)
+                <img src="{{ asset('storage/'.$prompt->thumbnail) }}" alt="">
+                @endif
 
-                        <div class="mb-4 row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <p class="fl-card-description">{{ $prompt->description }}</p>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                <hr class="divisor">
 
-                        <div class="mb-4 row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                <div class="meta d-flex align-items-center justify-content-between">
+                    <span>output: {{ $prompt->output_type }}</span>
+                    <span>
+                        <i class="bi bi-caret-down-fill"></i>
+                        {{ $prompt->copy_count }}
+                    </span>
+                </div>
+            </x-card>
+        </div>
+        <!-- /.fl-hero -->
+    </div>
+    <div class="col">
+        <div class="fl-form-panel">
+            <div class="fl-form-container">
 
-                                @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                <div class="fl-form-head mb-4 mt-4">
+                    <img src="{{ asset('img/logo.svg') }}" alt="Fluentia" class="fl-logo d-lg-none mb-4">
+                    <div class="kicker">Accesso riservato</div>
+                    <h2>Bentornata/o.</h2>
+                    <p>Inserisci le credenziali del tuo account admin per continuare.</p>
+                </div>
+
+                <form method="POST" action="{{ route('login') }}" class="fl-auth-form mb-4">
+
+                    @csrf
+
+                    <x-form-field>
+                        <x-slot:icon>envelope</x-slot:icon>
+                        <x-slot:label>Email</x-slot:label>
+                        <x-slot:type>email</x-slot:type>
+                        <x-slot:autocomplete>email</x-slot:autocomplete>
+                        <x-slot:id>email</x-slot:id>
+                        <x-slot:name>email</x-slot:name>
+                        <x-slot:placeholder>fluentia@mail.com</x-slot:placeholder>
+
+                        @error('email')
+                        <span class="fl-field-help invalid" role="alert">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </x-form-field>
+
+                    <x-form-field>
+                        <x-slot:icon>lock</x-slot:icon>
+                        <x-slot:label>Password</x-slot:label>
+                        <x-slot:type>password</x-slot:type>
+                        <x-slot:autocomplete>current-password</x-slot:autocomplete>
+                        <x-slot:id>password</x-slot:id>
+                        <x-slot:name>password</x-slot:name>
+                        <x-slot:placeholder>fluentia@mail.com</x-slot:placeholder>
+                    </x-form-field>
+
+                    <button type="submit" class="fl-btn primary w-100">
+                        Accedi al backoffice <i class="bi bi-arrow-right"></i>
+                    </button>
+                </form>
+
+                <a href="{{ route('register') }}" class="fl-link sm center">Non hai un account? Registrati</a>
+
+                <div class="fl-divider">oppure</div>
+
+                <a href="{{ route('index') }}" class="fl-link sm center"> <i class="bi bi-arrow-left"></i> Torna alla
+                    Home</a>
+
+                <div class="form-foot-note">
+                    Accesso riservato agli amministratori Fluentia.<br>
+                    Problemi di accesso? Contatta il team tecnico.
                 </div>
             </div>
+
         </div>
     </div>
 </div>

@@ -22,11 +22,11 @@ class PromptsTableSeeder extends Seeder
             $newPrompt = new Prompt();
 
             $newPrompt->title = $faker->sentence(3);
-            $newPrompt->description = $faker->paragraph();
-            $newPrompt->content = $faker->paragraph();
-            $newPrompt->instructions = $faker->paragraph();
+            $newPrompt->description = $faker->paragraph(10);
+            $newPrompt->content = $faker->paragraph(10);
+            $newPrompt->instructions = $faker->paragraph(5);
             $newPrompt->output_type = $output_types[rand(0,3)];
-            $newPrompt->output_content = $faker->paragraph();
+            $newPrompt->output_content = $faker->paragraph(5);
             $newPrompt->thumbnail = 'uploads/7bk2irHNxWzHUmeiteo7shw9oHh6MgvrE2WMLfrs.jpg';
             $newPrompt->copy_count = rand(1,100);
             $newPrompt->is_featured = rand(0,1);

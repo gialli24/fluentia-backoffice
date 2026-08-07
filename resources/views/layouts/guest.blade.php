@@ -16,7 +16,7 @@
 
     @include('partials.header')
 
-    <main class="app-main">
+    <main class="fl-guest-screen">
         @yield('content')
     </main>
     <!-- /.app-main -->

@@ -14,20 +14,10 @@
 
 <body>
 
-    <div class="fl-app">
-
-        <x-sidebar />
-
-        <main class="fl-app-screen">
-            @include('partials.app-header')
-
-            <div class="fl-app-content">
-                @yield('content')
-            </div>
-        </main>
-        <!-- /.app-main -->
-
-    </div>
+    <main class="fl-auth-screen">
+        @yield('content')
+    </main>
+    <!-- /.app-main -->
 
 </body>
 

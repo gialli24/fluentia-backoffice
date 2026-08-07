@@ -7,14 +7,19 @@
     <div class="row row-cols-1 row-cols-xl-2">
         <div class="col">
 
-            <div class="welcome-hero">
-                <div class="eyebrow">
+            <div class="fl-hero">
+
+                <div class="fl-eyebrow">
                     Pannello di Amministrazione
                 </div>
 
-                <h1>L'archivio prompt di Fluentia, <span>curato da chi lo conosce.</span></h1>
+                <h1 class="fl-hero-title">L'archivio prompt di Fluentia,
+                    <span class="fl-text-gradient brand italic">
+                        curato da chi lo conosce.
+                    </span>
+                </h1>
 
-                <p>
+                <p class="fl-hero-text">
                     Da qui il team cura ogni voce del catalogo: prompt, categorie e modelli AI collegati. Ciò che viene
                     pubblicato in questo
                     pannello è esattamente ciò che gli utenti trovano su Fluentia.
@@ -22,37 +27,66 @@
 
                 <div class="d-flex align-items-center gap-4">
 
-                    <a href="{{ route('login') }}" class="btn brand">
+                    <a href="{{ route('login') }}" class="fl-btn primary">
                         Accedi al backoffice <i class="bi bi-arrow-right"></i>
                     </a>
 
-                    <a href="#" class="link">Esplora il catalogo pubblico</a>
+                    <a href="#" class="fl-link">Esplora il catalogo pubblico</a>
 
                 </div>
 
-                <hr class="divisor">
+                <hr class="fl-divisor">
 
                 <div class="d-flex gap-4">
 
                     @foreach ($data as $el)
-                    <div class="stat">
-                        <h4>{{ $el['count'] }}</h4>
-                        <span>{{ $el['text'] }}</span>
+                    <div class="fl-stat-card">
+                        <h4 class="fl-stat-card-title">{{ $el['count'] }}</h4>
+                        <span class="fl-stat-card-text">{{ $el['text'] }}</span>
                     </div>
                     @endforeach
 
                 </div>
             </div>
-            <!-- /.welcome-hero -->
+            <!-- /.fl-hero -->
 
         </div>
         <div class="col d-none d-xl-inline">
-            <div class="stack-wrap">
 
+            <div class="fl-stack-wrap">
                 @foreach ($prompts as $prompt)
-                <x-card :prompt="$prompt" />
+                <x-card>
+                    <x-slot:style>max-width: 300px;</x-slot:style>
+                    <div class="d-flex flex-wrap gap-2">
+                        @foreach ($prompt->ai_models as $ai_model)
+                        <x-badge>
+                            <x-slot:color>{{ $ai_model->color }}</x-slot:color>
+                            {{ $ai_model->name }}
+                        </x-badge>
+                        @endforeach
+                    </div>
+
+                    <h4 class="fl-card-title">{{ $prompt->title }}</h4>
+
+                    @if ($prompt->thumbnail)
+                    <img src="{{ asset('storage/'.$prompt->thumbnail) }}" alt="">
+                    @endif
+
+                    <p class="fl-card-description">{{ $prompt->description }}</p>
+
+                    <hr class="divisor">
+
+                    <div class="meta d-flex align-items-center justify-content-between">
+                        <span>output: {{ $prompt->output_type }}</span>
+                        <span>
+                            <i class="bi bi-caret-down-fill"></i>
+                            {{ $prompt->copy_count }}
+                        </span>
+                    </div>
+                </x-card>
                 @endforeach
             </div>
+
         </div>
     </div>
 </div>

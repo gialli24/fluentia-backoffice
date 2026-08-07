@@ -1,85 +1,116 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h2 class="fs-4 text-secondary my-4">
-        {{ __('Prompt') }}
-    </h2>
+<div class="container-sm">
 
-    <form action="{{ route('prompts.store') }}" method="POST" enctype="multipart/form-data">
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-4">
+        <h1 class="fl-page-title">Prompts</h1>
+
+        <a href="{{ route('prompts.index') }}" class="fl-link">
+            <i class="bi bi-arrow-left"></i>
+            Torna indietro
+        </a>
+
+    </div>
+
+    <form method="POST" action="{{ route('prompts.store') }}" class="fl-auth-form mb-4" enctype="multipart/form-data">
 
         @csrf
 
-        <div class="mb-3">
-            <label for="thumbnail" class="form-label">Prompt Thumbnail</label>
-            <input type="file" class="form-control" id="thumbnail" name="thumbnail" required>
+        <x-form-field>
+            <x-slot:label>Thumbnail</x-slot:label>
+            <x-slot:type>file</x-slot:type>
+            <x-slot:id>thumbnail</x-slot:id>
+            <x-slot:name>thumbnail</x-slot:name>
+            <x-slot:placeholder>fluentia@mail.com</x-slot:placeholder>
+        </x-form-field>
+
+        <div class="fl-field">
+            <label for="">Categories</label>
         </div>
-
-        <div class="mb-3">
-            <label for="title" class="form-label">Prompt Title</label>
-            <input type="text" class="form-control" id="title" name="title" required>
-        </div>
-
-        <div class="mb-3">
-            <h5>Categories</h5>
-
+        <div class="d-flex flex-wrap gap-2">
             @foreach ($categories as $category)
-            <span class="me-4">
-                <input type="checkbox" id="category-{{ $category->id }}" name="categories[]"
-                    value="{{ $category->id }}">
-                <label for="category-{{ $category->id }}">{{ $category->name }}</label>
-            </span>
+            <x-form-checkbox>
+                <x-slot:icon>{{ $category->icon }}</x-slot:icon>
+                <x-slot:label>{{ $category->name }}</x-slot:label>
+                <x-slot:id>category-{{ $category->id }}</x-slot:id>
+                <x-slot:name>categories[]</x-slot:name>
+                <x-slot:value>{{ $category->id }}</x-slot:value>
+            </x-form-checkbox>
             @endforeach
         </div>
 
-        <div class="mb-3">
-            <h5>Ai Models</h5>
-
+        <div class="fl-field">
+            <label for="">Modelli Ai</label>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
             @foreach ($ai_models as $ai_model)
-            <span class="me-4">
-                <input type="checkbox" id="ai_model-{{ $ai_model->id }}" name="ai_models[]" value="{{ $ai_model->id }}">
-                <label for="ai_model-{{ $ai_model->id }}">{{ $ai_model->name }}</label>
-            </span>
+            <x-form-checkbox>
+                <x-slot:color>{{ $ai_model->color }}</x-slot:color>
+                <x-slot:label>{{ $ai_model->name }}</x-slot:label>
+                <x-slot:id>ai_model-{{ $ai_model->id }}</x-slot:id>
+                <x-slot:name>ai_models[]</x-slot:name>
+                <x-slot:value>{{ $ai_model->id }}</x-slot:value>
+            </x-form-checkbox>
             @endforeach
         </div>
 
-        <div class="mb-3">
-            <label for="description" class="form-label">Prompt Description</label>
-            <textarea class="form-control" id="description" name="description" required></textarea>
-        </div>
+        <x-form-field>
+            <x-slot:label>Titolo</x-slot:label>
+            <x-slot:type>text</x-slot:type>
+            <x-slot:id>title</x-slot:id>
+            <x-slot:name>title</x-slot:name>
+            <x-slot:placeholder>Come funziona l'Ai</x-slot:placeholder>
+        </x-form-field>
 
-        <div class="mb-3">
-            <label for="content" class="form-label">Prompt Content</label>
-            <textarea class="form-control" id="content" name="content" required></textarea>
-        </div>
+        <x-form-text-area>
+            <x-slot:label>Descrizione</x-slot:label>
+            <x-slot:id>description</x-slot:id>
+            <x-slot:name>description</x-slot:name>
+            <x-slot:placeholder>Scrivi una breve descrizione del prompt</x-slot:placeholder>
+        </x-form-text-area>
 
-        <div class="mb-3">
-            <label for="instructions" class="form-label">Prompt Instructions</label>
-            <textarea class="form-control" id="instructions" name="instructions" required></textarea>
-        </div>
+        <x-form-text-area>
+            <x-slot:label>Contenuto</x-slot:label>
+            <x-slot:id>content</x-slot:id>
+            <x-slot:name>content</x-slot:name>
+            <x-slot:placeholder>Scrivi il contenuto del prompt</x-slot:placeholder>
+        </x-form-text-area>
 
-        <div class="mb-3">
-            <label for="output_type" class="form-label">Prompt Output Type</label>
-            <select class="form-control" name="output_type" id="output_type">
-                <option value="text" selected>Text</option>
-                <option value="image">Image</option>
-                <option value="json">Json</option>
-                <option value="html">Html</option>
-            </select>
-        </div>
+        <x-form-text-area>
+            <x-slot:label>Istruzioni</x-slot:label>
+            <x-slot:id>instructions</x-slot:id>
+            <x-slot:name>instructions</x-slot:name>
+            <x-slot:placeholder>Scrivi le istruzioni del prompt</x-slot:placeholder>
+        </x-form-text-area>
 
-        <div class="mb-3">
-            <label for="output_content" class="form-label">Prompt Output Content</label>
-            <textarea class="form-control" id="output_content" name="output_content" required></textarea>
-        </div>
+        <x-form-select>
+            <x-slot:label>Output Type</x-slot:label>
+            <x-slot:id>output_type</x-slot:id>
+            <x-slot:name>output_type</x-slot:name>
+            <option value="text">Text</option>
+            <option value="image">Image</option>
+            <option value="json">Json</option>
+            <option value="html">Html</option>
+        </x-form-select>
 
-        <div class="mb-3">
-            <input type="checkbox" name="is_featured" id="is_featured">
-            <label for="is_featured" class="form-label">Is Featured</label>
-        </div>
+        <x-form-text-area>
+            <x-slot:label>Output Content</x-slot:label>
+            <x-slot:id>output_content</x-slot:id>
+            <x-slot:name>output_content</x-slot:name>
+            <x-slot:placeholder>Scrivi il contenuto dell'output del prompt</x-slot:placeholder>
+        </x-form-text-area>
 
-        <button type="submit" class="btn btn-primary">Add Prompt</button>
+        <x-form-checkbox>
+            <x-slot:label>Is Featured</x-slot:label>
+            <x-slot:id>is_featured</x-slot:id>
+            <x-slot:name>is_featured</x-slot:name>
+            <x-slot:value>1</x-slot:value>
+        </x-form-checkbox>
 
+        <button type="submit" class="fl-btn primary w-100 mt-4">
+            Aggiungi Prompt <i class="bi bi-plus"></i>
+        </button>
     </form>
 
 </div>
