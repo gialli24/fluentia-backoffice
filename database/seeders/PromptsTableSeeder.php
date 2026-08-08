@@ -16,7 +16,7 @@ class PromptsTableSeeder extends Seeder
     public function run(Faker $faker): void
     {
 
-        $output_types = ['text', 'json', 'html', 'image'];
+        /* $output_types = ['text', 'json', 'html', 'image'];
 
         for ($i=0; $i < 10; $i++) { 
             $newPrompt = new Prompt();
@@ -31,6 +31,22 @@ class PromptsTableSeeder extends Seeder
             $newPrompt->copy_count = rand(1,100);
             $newPrompt->is_featured = rand(0,1);
 
+            $newPrompt->save();
+        } */
+
+        $realPrompts = config('prompts');
+
+        foreach ($realPrompts as $promptData) {
+            $newPrompt = new Prompt();
+            $newPrompt->title = $promptData->title;
+            $newPrompt->description = $promptData->description;
+            $newPrompt->content = $promptData->content;
+            $newPrompt->instructions = $promptData->instructions;
+            $newPrompt->output_type = $promptData->output_type;
+            $newPrompt->output_content = $promptData->output_content;
+            $newPrompt->thumbnail = $promptData->thumbnail;
+            $newPrompt->copy_count = $promptData->copy_count;
+            $newPrompt->is_featured = $promptData->is_featured;
             $newPrompt->save();
         }
     }

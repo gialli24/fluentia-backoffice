@@ -17,9 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource("/categories", CategoryController::class)/* ->middleware(['auth']) */;
-Route::resource("/ai-models", AiModelsController::class)/* ->middleware(['auth']) */;
-Route::resource("/prompts", PromptController::class)->name('get', 'prompts')/* ->middleware(['auth']) */;
+Route::resource("/categories", CategoryController::class)->middleware(['auth']);
+Route::resource("/ai-models", AiModelsController::class)->middleware(['auth']);
+Route::resource("/prompts", PromptController::class)->name('get', 'prompts')->middleware(['auth']);
 
 
 require __DIR__.'/auth.php';

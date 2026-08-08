@@ -19,16 +19,30 @@
         <x-sidebar />
 
         <main class="fl-app-screen">
-            @include('partials.app-header')
-
-            <div class="fl-app-content">
-                @yield('content')
-            </div>
+            @yield('content')
         </main>
         <!-- /.app-main -->
 
     </div>
 
+    <script>
+        function copyToClipboard(button, text) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    button.innerHTML = '<i class="bi bi-check-lg"></i> Copiato';
+                    button.disabled = true;
+                    button.classList.add('success');
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="bi bi-clipboard"></i> Copia';
+                        button.disabled = false;
+                        button.classList.remove('success');
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Errore durante la copia del prompt: ', err);
+                });
+        }
+    </script>
 </body>
 
 </html>
