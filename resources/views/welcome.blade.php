@@ -56,7 +56,8 @@
             <div class="fl-stack-wrap">
                 @foreach ($prompts as $prompt)
                 <x-card>
-                    <x-slot:style>width: 300px;</x-slot:style>
+                    <x-slot:class>w-100</x-slot:class>
+                    <x-slot:style>min-width: 300px;</x-slot:style>
                     <div class="d-flex flex-wrap gap-2">
                         @foreach ($prompt->ai_models as $ai_model)
                         <x-badge>
@@ -72,7 +73,7 @@
                     <img src="{{ asset('storage/'.$prompt->thumbnail) }}" alt="">
                     @endif
 
-                    <p class="fl-card-description">{{ $prompt->description }}</p>
+                    <p class="fl-card-description">{{ substr($prompt->description, 0, 30) }}</p>
 
                     <hr class="divisor">
 

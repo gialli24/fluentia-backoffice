@@ -104,6 +104,27 @@ img {
 
 /* End Logo */
 
+/* Tables */
+
+.fl-table {
+    width: 100%;
+}
+
+.fl-table>thead {
+    border-bottom: 1px solid var(--border-subtle);
+
+    color: var(--text-primary);
+}
+
+.fl-table>thead th {
+    padding-bottom: 1rem;
+}
+
+.fl-table>tbody th,
+td {
+    padding-top: 1rem;
+}
+
 /* End Tables */
 
 /* Navigation */

@@ -1,7 +1,18 @@
 @extends('layouts.app')
 
+@php
+$path = [
+['name' => 'Dashboard', 'url' => route('dashboard')],
+['name' => 'Prompt', 'url' => route('prompts.index')],
+['name' => 'Nuovo Prompt', 'url' => route('prompts.create')]
+];
+@endphp
+
 @section('content')
-<div class="container-sm">
+
+<x-app-header :path="$path" />
+
+<div class="fl-app-content">
 
     <div class="d-flex justify-content-between align-items-center mb-4 pb-4">
         <h1 class="fl-page-title">Prompts</h1>

@@ -3,7 +3,7 @@
 
     <div class="fl-input-wrap">
         <textarea id="{{ $name }}" name="{{ $name }}" autofocus
-            placeholder="{{ $placeholder }}">{{ old( ''.$name ) }}</textarea>
+            placeholder="{{ $placeholder }}">{{ old(''.$name, $value ?? '') }}</textarea>
     </div>
 
     {{$slot}}

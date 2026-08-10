@@ -6,9 +6,9 @@
         <i class="bi bi-{{ $icon }}"></i>
         @endif
 
-        <input id="{{ $name }}" type="{{ $type }}" name="{{ $name }}" value="{{ old( ''.$name )  }}" {{
-            isset($autocomplete) && trim($autocomplete) !=='' ? 'autocomplete="' . $autocomplete .'"' : '' }} autofocus
-            placeholder="{{ $placeholder }}" required>
+        <input id="{{ $name }}" type="{{ $type }}" name="{{ $name }}" @if($type !=='file' )
+            value="{{ old(''.$name, $value ?? '') }}" @endif {{ isset($autocomplete) && trim($autocomplete) !==''
+            ? 'autocomplete="' . $autocomplete .'"' : '' }} autofocus placeholder="{{ $placeholder }}" required>
     </div>
 
     {{$slot}}

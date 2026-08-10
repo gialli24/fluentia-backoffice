@@ -1,44 +1,59 @@
 @extends('layouts.app')
 
+@php
+$path = [
+['name' => 'Dashboard', 'url' => route('dashboard')],
+['name' => 'Categorie', 'url' => route('categories.index')],
+];
+@endphp
+
+
 @section('content')
-<div class="container">
-    <h2 class="fs-4 text-secondary my-4">
-        {{ __('Categories') }}
-    </h2>
 
-    <a href="{{ route('categories.create') }}" class="btn btn-primary">Add</a>
+<x-app-header :path="$path" />
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Icon Name</th>
-                <th scope="col">Icon</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($categories as $category)
-            <tr>
-                <th scope="row">{{ $category->id }}</th>
-                <td>{{ $category->name }}</td>
-                <td>{{ $category->icon }}</td>
-                <td><i class="bi bi-{{ $category->icon }}"></i></td>
-                <td>
-                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning">Update</a>
+<div class="fl-app-content">
 
-                    {{-- Delete --}}
-                    <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger"
-                            onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-4">
+        <h1 class="fl-page-title">Categorie</h1>
+
+        <a href="{{ route('categories.create') }}" class="fl-btn primary">
+            <i class="bi bi-plus-lg"></i>
+            Nuova categoria
+        </a>
+    </div>
+
+    <x-card>
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Icona</th>
+                    <th class="d-flex justify-content-end">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories as $category)
+                <tr>
+                    <th scope="row">{{ $category->id }}</th>
+                    <td>{{ $category->name }}</td>
+                    <td><i class="bi bi-{{ $category->icon }} me-2"></i> {{ $category->icon }}</td>
+                    <td class="d-flex justify-content-end">
+                        <a href="{{ route('categories.edit', $category) }}" class="fl-btn sm me-2">Update</a>
+
+                        {{-- Delete --}}
+                        <form action="{{ route('categories.destroy', $category) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="fl-btn sm"
+                                onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </x-card>
 </div>
 @endsection

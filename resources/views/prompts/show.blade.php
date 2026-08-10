@@ -24,9 +24,14 @@ $path = [
         <h1 class="fl-page-title">{{ $prompt->title }}</h1>
 
         <div class="d-flex gap-2">
-            <a href="{{ route('prompts.show', $prompt) }}" class="fl-btn sm">
-                <i class="bi bi-trash"></i>
-            </a>
+            {{-- Delete --}}
+            <form action="{{ route('prompts.destroy', $prompt) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="fl-btn sm"
+                    onclick="return confirm('Are you sure you want to delete this prompt?')"><i
+                        class="bi bi-trash"></i></button>
+            </form>
 
             <a href="{{ route('prompts.edit', $prompt) }}" class="fl-btn sm primary">
                 <i class="bi bi-pencil me-2"></i>
