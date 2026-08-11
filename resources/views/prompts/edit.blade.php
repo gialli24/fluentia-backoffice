@@ -133,9 +133,11 @@ $path = [
             <x-slot:label>Is Featured</x-slot:label>
             <x-slot:id>is_featured</x-slot:id>
             <x-slot:name>is_featured</x-slot:name>
-            <x-slot:value>1</x-slot:value>
             @if(old('is_featured', $prompt->is_featured))
+            <x-slot:value>on</x-slot:value>
             <x-slot:checked>1</x-slot:checked>
+            @else
+            <x-slot:value>off</x-slot:value>
             @endif
         </x-form-checkbox>
 

@@ -101,7 +101,7 @@ class PromptController extends Controller
         $prompt->instructions = $data['instructions'];
         $prompt->output_type = $data['output_type'];
         $prompt->output_content = $data['output_content'];
-        $prompt->is_featured = $data['is_featured'] ? 1 : 0;
+        $prompt->is_featured = isset($data['is_featured']) ? 1 : 0;
 
         if (array_key_exists("thumbnail", $data)) {
 
