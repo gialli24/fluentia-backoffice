@@ -47,7 +47,7 @@
                     Impostazioni
                 </a>
 
-                <a href="" class="fl-sidebar-link">
+                <a href="http://localhost:5173/prompts" class="fl-sidebar-link">
                     <i class="bi bi-box-arrow-up-right me-2"></i>
                     Catalogo pubblico
                 </a>

@@ -40,14 +40,14 @@ $path = [
                     <td>{{ $category->name }}</td>
                     <td><i class="bi bi-{{ $category->icon }} me-2"></i> {{ $category->icon }}</td>
                     <td class="d-flex justify-content-end">
-                        <a href="{{ route('categories.edit', $category) }}" class="fl-btn sm me-2">Update</a>
+                        <a href="{{ route('categories.edit', $category) }}" class="fl-btn sm me-2">Modifica</a>
 
                         {{-- Delete --}}
                         <form action="{{ route('categories.destroy', $category) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="fl-btn sm"
-                                onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
+                                onclick="return confirm('Are you sure you want to delete this category?')">Elimina</button>
                         </form>
                     </td>
                 </tr>

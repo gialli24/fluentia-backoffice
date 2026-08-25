@@ -47,14 +47,14 @@ $path = [
                         </div>
                     </td>
                     <td class="d-flex justify-content-end">
-                        <a href="{{ route('ai-models.edit', $ai_model->id) }}" class="fl-btn sm me-2">Update</a>
+                        <a href="{{ route('ai-models.edit', $ai_model->id) }}" class="fl-btn sm me-2">Modifica</a>
 
                         {{-- Delete --}}
                         <form action="{{ route('ai-models.destroy', $ai_model->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="fl-btn sm"
-                                onclick="return confirm('Are you sure you want to delete this ai_model?')">Delete</button>
+                                onclick="return confirm('Are you sure you want to delete this ai_model?')">Elimina</button>
                         </form>
                     </td>
                 </tr>

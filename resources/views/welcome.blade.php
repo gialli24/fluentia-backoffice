@@ -31,7 +31,7 @@
                         Accedi al backoffice <i class="bi bi-arrow-right"></i>
                     </a>
 
-                    <a href="#" class="fl-link">Esplora il catalogo pubblico</a>
+                    <a href="http://localhost:5173/prompts" class="fl-link">Esplora il catalogo pubblico</a>
 
                 </div>
 

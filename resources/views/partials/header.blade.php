@@ -11,8 +11,9 @@
 
         <div class="collapse navbar-collapse justify-content-lg-end mt-4 mt-lg-0" id="mainNavbar">
             <nav class="d-flex flex-column flex-lg-row align-items-center gap-4" role="navigation">
-                <a href="#" class="fl-nav-link">Cos'è Fluentia</a>
-                <a href="#" class="fl-nav-link">Catalogo pubblico <i class="bi bi-box-arrow-up-right"></i></a>
+                <a href="" class="fl-nav-link">Cos'è Fluentia</a>
+                <a href="http://localhost:5173/prompts" class="fl-nav-link">Catalogo pubblico <i
+                        class="bi bi-box-arrow-up-right"></i></a>
                 <a href="{{ route('login') }}" class="fl-btn outline">Accedi al backoffice</a>
             </nav>
         </div>

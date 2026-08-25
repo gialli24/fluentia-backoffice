@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\AiModelController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PromptController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,3 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('prompts', [PromptController::class, 'index']);
 Route::get('prompts/{prompt}', [PromptController::class, 'show']);
+
+Route::get('categories', [CategoryController::class, 'index']);
+
+Route::get('ai_models', [AiModelController::class, 'index']);
