@@ -656,6 +656,56 @@ button.fl-btn[disabled] {
     padding: 88px 0;
 }
 
+.fl-error-screen {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 150px);
+    overflow: hidden;
+    background:
+        radial-gradient(520px 420px at 82% 50%, rgba(96, 92, 215, 0.24), transparent 68%),
+        radial-gradient(420px 360px at 12% 85%, rgba(123, 204, 255, 0.12), transparent 70%);
+}
+
+.fl-error-screen::after {
+    position: absolute;
+    top: 50%;
+    right: 8%;
+    z-index: 0;
+    content: "404";
+    font-family: 'Iosevka Charon';
+    font-size: clamp(180px, 28vw, 420px);
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.035);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.fl-error-content {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+}
+
+.fl-error-title {
+    margin: 32px 0;
+    font-family: 'Iosevka Charon';
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--text-primary);
+}
+
+.fl-error-title span {
+    font-family: inherit;
+}
+
+.fl-error-text {
+    max-width: 480px;
+    margin-bottom: 36px;
+    color: var(--text-secondary);
+}
+
 .fl-auth-screen .fl-hero.auth {
     min-height: 100vh;
     height: 100%;
